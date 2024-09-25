@@ -1,7 +1,7 @@
 # configured aws provider with proper credentials
 provider "aws" {
   region    = "us-east-1"
-  profile   = "default"
+  profile   = "sanni"
 }
 
 
@@ -103,10 +103,10 @@ data "aws_ami" "ubuntu" {
 # launch the ec2 instance
 resource "aws_instance" "ec2_instance" {
   ami                    = data.aws_ami.ubuntu.id
-  instance_type          = "t2.small"
+  instance_type          = "t2.micro"
   subnet_id              = aws_default_subnet.default_az1.id
   vpc_security_group_ids = [aws_security_group.ec2_security_group.id]
-  key_name               = "bada"
+  key_name               = "abikp"
   user_data = "${file("install_jenkins.sh")}"
 
   tags = {
